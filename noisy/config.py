@@ -5,8 +5,8 @@ from json import dumps, loads
 
 __all__ = 'NoisyConfig',
 
-class NoisyConfig(object):
 
+class NoisyConfig(object):
     _dir_loc = './dir.json'
 
     def __init__(self):
@@ -23,10 +23,10 @@ class NoisyConfig(object):
     def mp3_from_dir(self):
         r = []
         for path in self.dir:
-            for root, dirs, files in walk(path):
+            for root, dirs, files in walk(unicode(path)):
                 for f in files:
-                    if 'mp3' in f:
-                        r.append('%s\\%s' % (root, f))
+                    if f.endswith('mp3'):
+                        r.append(u'%s\\%s' % (root, f))
         return r
 
     @property
@@ -41,7 +41,7 @@ class NoisyConfig(object):
         self._dir.append(o)
         self._dir = list(set(self._dir))
         with open(self._dir_loc, 'w') as f:
-            f.write(dumps(self._dir))
+            f.write(dumps(self._dir).encode('utf-8'))
 
     @property
     def mp3(self):

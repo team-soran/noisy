@@ -5,8 +5,8 @@ from .config import NoisyConfig
 
 __all__ = 'ImportDirAction',
 
-class ImportDirAction(QAction):
 
+class ImportDirAction(QAction):
     def __init__(self, w):
         super(ImportDirAction, self).__init__(
             QIcon('exit.png'), u'&음악 폴더 지정', w)
